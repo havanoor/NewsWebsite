@@ -8,7 +8,40 @@ Version: 1.0
 License: GPL
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+.card-horizontal {
+    display: flex;
+    /*flex: 1 1 auto;*/
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    
+}
+.img-square-wrapper{
+	padding: 5px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 5px;
+}
+.card_img{
+	border-radius: 5px;
+	border: 1px solid black;
+	
+	width:150px;
+	height: 160px;
+}
+.card-title{
+	
+	margin-top: 10px;
+}
+.card-text{
+	margin-right: 5px;
+	width:500px;
+	font-size: 15px;
+	line-height: 1.0;
 
+}
 *{
 	margin:0;
 	padding:0;
@@ -83,7 +116,29 @@ div{overflow:hidden}
 #submit{
 	font-size:12px;
 }
+.news_img{
+	 display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 5px;
+  border: 1px solid black;
+  margin-bottom: 15px;
+}
 
+.news_content{
+	font-size:20px;
+	line-height: 1.0;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+#back{
+	font-size: 20px;
+	margin-top: 10px;
+	border-radius: 50%;
+	text-decoration: none;
+}
 .main_menu_area{overflow:visible; background:#0D0E0F; min-height:50px}
 .main_menu_area ul{margin:0; padding:0; list-style:none}
 .main_menu_area ul li{float:left; position:relative}
