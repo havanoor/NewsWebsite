@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,18 +8,18 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="assets/font/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="assets/font/font.css" />
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/font/font-awesome.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/font/font.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}" media="screen" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css'%}" media="screen" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.bxslider.css' %}" media="screen" />
 </head>
 <body>
 <div class="body_wrapper">
   <div class="center">
     <div class="header_area">
-      <div class="logo floatleft"><a href="#"><img src="images/logo.png" alt="" /></a></div>
+      <div class="logo floatleft"><a href="#"><img src="{% static 'images/logo.png' %}" alt="" /></a></div>
     </div>
     <div class="main_menu_area">
       <ul id="nav">
@@ -42,18 +43,24 @@
     <div class="slider_area">
       <div class="slider">
         <ul class="bxslider">
-          <li><img src="images/1.jpg" alt="" title="Slider caption text" /></li>
-          <li><img src="images/2.jpg" alt="" title="Slider caption text" /></li>
-          <li><img src="images/3.jpg" alt="" title="Slider caption text" /></li>
+          <li><img src="{% static 'images/1.jpg'%}" alt="" title="Slider caption text" /></li>
+          <li><img src="{% static 'images/2.jpg' %}" alt="" title="Slider caption text" /></li>
+          <li><img src="{% static 'images/3.jpg' %}" alt="" title="Slider caption text" /></li>
         </ul>
       </div>
     </div>
     <div class="content_area">
       <div class="main_content floatleft">
         <div class="left_coloum floatleft">
+          <h2 class="title">from   around   the   world</h2>
           <div class="single_left_coloum_wrapper">
-            <h2 class="title">from   around   the   world</h2>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
+            {% for num in TopHeadlines %}
+            <div class="single_left_coloum floatleft"> <img src={{num.urlToImage}} alt="" />
+              <h3>{{num.title}}</h3>
+              <p>{{num.description}}</p>
+              <a class="readmore" href={{num.url}}>read more</a> </div>
+              {% endfor %}
+            <!-- <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
               <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
                 dolor eu mattis.</p>
@@ -63,11 +70,6 @@
               <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
                 dolor eu mattis.</p>
               <a class="readmore" href="#">read more</a> </div>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
               <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
               <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
@@ -97,7 +99,7 @@
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
               <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
                 dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
+              <a class="readmore" href="#">read more</a> </div> -->
           </div>
         </div>
         <div class="right_coloum floatright">
@@ -134,7 +136,15 @@
           <div class="popular">
             <h2 class="title">Popular</h2>
             <ul>
+              {% for val in Popularity %}
               <li>
+                <div class="single_popular">
+                  <p>{{val.publishedAt}}</p>
+                  <h3>{{val.title}} <a href={{val.url}} class="readmore">Read More</a></h3>
+                </div>
+              </li>
+              {% endfor %}
+              <!-- <li>
                 <div class="single_popular">
                   <p>Sept 24th 2045</p>
                   <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit <a href="#" class="readmore">Read More</a></h3>
@@ -157,22 +167,16 @@
                   <p>Sept 24th 2045</p>
                   <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit <a href="#" class="readmore">Read More</a></h3>
                 </div>
-              </li>
-              <li>
-                <div class="single_popular">
-                  <p>Sept 24th 2045</p>
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit <a href="#" class="readmore">Read More</a></h3>
-                </div>
-              </li>
+              </li> -->
             </ul>
             <a class="popular_more">more</a> </div>
         </div>
   </div>
 </div>
-<script type="text/javascript" src="assets/js/jquery-min.js"></script> 
-<script type="text/javascript" src="assets/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="assets/js/jquery.bxslider.js"></script> 
-<script type="text/javascript" src="assets/js/selectnav.min.js"></script> 
+<script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script> 
+<script type="text/javascript" src="{% static  'assets/js/bootstrap.min.js' %}"></script> 
+<script type="text/javascript" src="{% static 'assets/js/jquery.bxslider.js' %}"></script> 
+<script type="text/javascript" src="{% static 'assets/js/selectnav.min.js' %}"></script> 
 <script type="text/javascript">
 selectnav('nav', {
     label: '-Navigation-',
