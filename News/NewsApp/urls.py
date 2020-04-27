@@ -6,6 +6,7 @@ urlpatterns = [
     
 path('',user_views.HomeView.as_view(),name="Home"),
 path('topic/<str:topic>',user_views.TopicView.as_view(),name="Topic"),
+path('login/',user_views.login,name="logiin"),
 
 
 ]

@@ -49,3 +49,5 @@ class TopicView(View):
         content={'Topic':val3['articles']}
         return render(self.request,'topic.html',content)
 
+def login(request):
+    return render(request,'login.html')
