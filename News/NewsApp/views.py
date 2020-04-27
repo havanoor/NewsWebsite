@@ -1,20 +1,51 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import requests,json
-
-
-#
-
+from django.views.generic import View
 
 
 
-def home(request):
-    url="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3e4b5fd607dd40289b24ac5db977cc63"
-    url2="https://newsapi.org/v2/everything?q=corona&apiKey=3e4b5fd607dd40289b24ac5db977cc63&sort-by=popularity"
-    response1=requests.get(url)
-    response2=requests.get(url2)
-    val=response1.json()
-    val2=response2.json()
-    content={'TopHeadlines':val['articles'],'Popularity':val2['articles'][0:10]}
 
-    return render(request,"index.html",content)
+
+
+# def home(request):
+#     url="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3e4b5fd607dd40289b24ac5db977cc63"
+#     url2="https://newsapi.org/v2/everything?q=corona&apiKey=3e4b5fd607dd40289b24ac5db977cc63&sort-by=popularity"
+#     response1=requests.get(url)
+#     response2=requests.get(url2)
+#     val=response1.json()
+#     val2=response2.json()
+#     content={'TopHeadlines':val['articles'],'Popularity':val2['articles'][0:10]}
+
+#     return render(request,"index.html",content)
+
+# def new(request):
+#     url3='https://newsapi.org/v2/everything?q=sports&apiKey=3e4b5fd607dd40289b24ac5db977cc63'
+#     response3=requests.get(url3)
+#     val3=response3.json()
+#     content={'Topic':val3['articles']}
+#     return render(request,'sports.html',content)
+
+
+class HomeView(View):
+    def get(self,request,*args,**kwargs):
+        url="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3e4b5fd607dd40289b24ac5db977cc63"
+        url2="https://newsapi.org/v2/everything?q=corona&apiKey=3e4b5fd607dd40289b24ac5db977cc63&sort-by=popularity"
+        response1=requests.get(url)
+        response2=requests.get(url2)
+        val=response1.json()
+        val2=response2.json()
+        content={'TopHeadlines':val['articles'],'Popularity':val2['articles'][0:10]}
+
+        return render(self.request,"home.html",content)
+
+class TopicView(View):
+    def get(self,request,*args,**kwargs):
+        news_topic=kwargs['topic']
+        url3=f'https://newsapi.org/v2/everything?q={news_topic}&apiKey=3e4b5fd607dd40289b24ac5db977cc63'
+        print(kwargs,"Keyword arguments")
+        response3=requests.get(url3)
+        val3=response3.json()
+        content={'Topic':val3['articles']}
+        return render(self.request,'topic.html',content)
+

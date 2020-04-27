@@ -23,11 +23,11 @@
     </div>
     <div class="main_menu_area">
       <ul id="nav">
-        <li><a href="index.html">world news</a></li>
-        <li><a href="sports.html">sports</a></li>
-        <li><a href="#">tech</a></li>
-        <li><a href="#">business</a></li>
-        <li><a href="#">entertainment</a></li>
+        <li><a href="{% url 'Topic' topic='world' %}">world news</a></li>
+        <li><a href="{% url 'Topic' topic='sports' %}">sports</a></li>
+        <li><a href="{% url 'Topic' topic='technology' %}">tech</a></li>
+        <li><a href="{% url 'Topic' topic='business' %}">business</a></li>
+        <li><a href="{% url 'Topic' topic='entertainment' %}">entertainment</a></li>
       </ul>
       <div class="search">
           <form action="#" method="post" id="search_form">
