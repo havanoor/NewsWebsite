@@ -21,7 +21,7 @@
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
-                    <form method="POST" id="signup-form" class="signup-form">
+                    <!-- <form method="POST" id="signup-form" class="signup-form">
                         <h2 class="form-title">Log In</h2>
                         <div class="form-group">
                             <input type="email" class="form-input" name="email" id="email" placeholder="Your Email"/>
@@ -34,6 +34,21 @@
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
                         </div>
+                    </form> -->
+                    <form method="POST">
+                        <!-- {{form}} -->
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{form.username}}
+                        </div>
+                        <div class="form-group">
+                            {{form.password}}
+                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                        </div>
+
+                        <button type="submit" id="submit" class="form-submit">
+                            Sign Up
+                        </button>
                     </form>
                     <p class="loginhere">
                         Do not have an account ? <a href="signup.html" class="loginhere-link">SignUp here</a>

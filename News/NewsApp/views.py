@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import requests,json
 from django.views.generic import View
+from .forms import Loginform
+from django.contrib.auth import authenticate,login,logout
+
 
 
 
@@ -49,5 +52,27 @@ class TopicView(View):
         content={'Topic':val3['articles']}
         return render(self.request,'topic.html',content)
 
-def login(request):
-    return render(request,'login.html')
+# def login(request):
+#     form=Loginform()
+#     return render(request,'login.html',{'form':form})
+
+
+def loginUser(request):
+    error=None
+    form=Loginform()
+
+    if request.method == 'POST':
+        username =request.POST['username']
+        passw =request.POST['password']
+        user = authenticate(username=username, password=passw)
+        if user is not None:
+            login(request, user) # logs User in
+            return redirect('Home')
+        else:
+            #return render(request, 'signup.html', {'error': "Unable to Log you in!"})
+            error="Try again"
+    return render(request, 'login.html', {'error': error,'form':form})
+
+
+def register(request):
+    return render(request,'signup.html')
