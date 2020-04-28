@@ -10,6 +10,7 @@ path('topic/<str:topic>',user_views.TopicView.as_view(),name="Topic"),
 path('login/',user_views.loginUser,name="logiin"),
 path('login2/',auth_views.LoginView.as_view(template_name='login.html')),
 path('register/',user_views.register,name="register"),
+path('test/',user_views.test,name='test'),
 
 
 ]

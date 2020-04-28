@@ -2,8 +2,10 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import requests,json
 from django.views.generic import View
-from .forms import Loginform
+from .forms import *
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from .models import *
 
 
 
@@ -75,4 +77,18 @@ def loginUser(request):
 
 
 def register(request):
-    return render(request,'signup.html')
+    form=new_user(request.POST)
+    if request.method=='POST':
+        if form.is_valid():
+            form.save()
+            pref=Choices.objects.create(preferences=request.POST['topics2'],user=User.objects.get(username=request.POST['username']))
+
+            print(request.POST,"Hhhhhhhhhhheeeeeeeeeeeeeeee")
+            return redirect('Home')
+
+    return render(request,'signup.html',{'form':form})
+
+def test(request):
+    val=Choices.objects.get(user=request.user)
+    Choices.objects.create(user=request.user,preferences=('Business','Technology'))
+    return HttpResponse(val)

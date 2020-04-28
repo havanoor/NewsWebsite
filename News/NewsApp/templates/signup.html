@@ -22,7 +22,8 @@
             <div class="container">
                 <div class="signup-content">
                     <form method="POST" id="signup-form" class="signup-form">
-                        <h2 class="form-title">Create account</h2>
+                        {% csrf_token %}
+                        <!-- <h2 class="form-title">Create account</h2>
                         <div class="form-group">
                             <input type="text" class="form-input" name="name" id="name" placeholder="Your Name"/>
                         </div>
@@ -40,13 +41,17 @@
                                   <option>Technology</option>
                                   <option>Sports</option>
                                   <option>Entertainment</option>
-                                </select>
+                                </select> -->
+                               
+                                {{form.as_p}}
                                 <p>To select more than one option press CTRL and select</p>
-                        </div>
+                        
                         
                         <div class="form-group">
-                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
+                            <!-- <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/> -->
+                            <button type="submit" id="submit" class="form-submit">Register</button>
                         </div>
+                    </div>
                     </form>
                     <p class="loginhere">
                         Have already an account ? <a href="login.html" class="loginhere-link">Login here</a>
