@@ -19,24 +19,24 @@
 <div class="body_wrapper">
   <div class="center">
     <div class="header_area">
-      <div class="logo floatleft"><a href="#"><img src="{% static 'images/logo.png' %}" alt="" /></a></div>
+      <div class="logo floatleft"><a href="{% url 'Home' %}"><img src="{% static 'images/logo.png' %}" alt="" /></a></div>
     </div>
     <div class="main_menu_area">
       <ul id="nav">
-        <li><a href="index.html">world news</a></li>
-        <li><a href="sports.html">sports</a></li>
-        <li><a href="#">tech</a></li>
-        <li><a href="#">business</a></li>
-        <li><a href="#">entertainment</a></li>
+        <li><a href="{% url 'Topic' topic='world' %}">world news</a></li>
+        <li><a href="{% url 'Topic' topic='sports' %}">sports</a></li>
+        <li><a href="{% url 'Topic' topic='technology' %}">tech</a></li>
+        <li><a href="{% url 'Topic' topic='business' %}">business</a></li>
+        <li><a href="{% url 'Topic' topic='entertainment' %}">entertainment</a></li>
       </ul>
       <div class="search">
-          <form action="#" method="post" id="search_form">
+          <form method="post" id="search_form">
             <input type="text" placeholder="Search news" id="s" />
-             <button type="button" id="submit" class="btn btn-default">
+             <button type="submit" id="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             <!-- <input type="submit" id="searchform" value="search" /> -->
-            <input type="hidden" value="post" name="post_type" />
+            <!-- <input type="hidden" value="post" name="post_type" /> -->
           </form>
         </div>
     </div>

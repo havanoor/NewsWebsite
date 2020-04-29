@@ -88,6 +88,16 @@ class HomeView(View):
 
         return render(self.request,"home.html",content)
 
+    def post(self,request,*args,**kwargs):
+        #return HttpResponse(self.request.POST['Type'])
+        news_topic=self.request.POST['Type'].lower()
+        url3=f'https://newsapi.org/v2/everything?q={news_topic}&apiKey=3e4b5fd607dd40289b24ac5db977cc63'
+        print(kwargs,"Keyword arguments")
+        response3=requests.get(url3)
+        val3=response3.json()
+        content={'Topic':val3['articles']}
+        return render(self.request,'topic.html',content)
+
 class TopicView(View):
     def get(self,request,*args,**kwargs):
         news_topic=kwargs['topic']
