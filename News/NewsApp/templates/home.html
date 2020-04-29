@@ -114,7 +114,10 @@
 <!-- TradingView Widget END -->
    <div class="rolling">
     <marquee width="100%" direction="left" > 
-     <h2>This is a sample scrolling text that has scrolls texts to left.</h2>
+      
+     <h2 style="color: green;">{% for val in stock %}{{val.name}}{{val.cost}}{{val.percent}} ||{% endfor %} </h2>
+    
+     
    </marquee>
   </div>
     <div class="content_area">
@@ -177,37 +180,37 @@
             <div class="card bg-danger text-white " style="background-color: #FFE5CC;">
               <div class="card-title" style="color: red;">Confirmed</div>
               <div class="card-body" style="color: red;">
-                <h5>[+235]</h5>
+                <h5>+{{Change.ChangeConfirm}}</h5>
               </div>
               <div class="card-number" style="color: red;">
-                  <p>32500</p>
+                  <p>{{Cdata.Confirmed}}</p>
               </div>
             </div>
             <div class="card bg-danger text-white" style="background-color: #CCE5FF;">
               <div class="card-title" style="color: blue;">Active</div>
               <div class="card-body" style="color: blue;">
-                <h5>[+235]</h5>
+                <h5></h5>
               </div>
               <div class="card-number" style="color: blue;">
-                  <p>32500</p>
+                  <p>{{ Cdata.Active }}</p>
               </div>
             </div>
             <div class="card bg-danger text-white"  style="background-color:#CCFFCC;">
               <div class="card-title" style="color:green;">Recovered</div>
               <div class="card-body" style="color:green;">
-                <h5>[+235]</h5>
+                <h5>+{{Change.ChangeRecover}}</h5>
               </div>
               <div class="card-number" style="color:green;">
-                  <p>32500</p>
+                  <p>{{Cdata.Recovered}}</p>
               </div>
             </div>
             <div class="card bg-danger text-white" style="background-color: #E0E0E0;">
               <div class="card-title">Deceased</div>
               <div class="card-body">
-                <h5>[+235]</h5>
+                <h5>+{{Change.ChangeDeath}}</h5>
               </div>
               <div class="card-number">
-                  <p>32500</p>
+                  <p>{{Cdata.Deaths}}</p>
               </div>
             </div>
         </div>

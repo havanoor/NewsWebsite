@@ -6,6 +6,8 @@ from .forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from .models import *
+import datetime
+from bs4 import BeautifulSoup
 
 
 
@@ -32,15 +34,57 @@ from .models import *
 #     return render(request,'sports.html',content)
 
 
+def stock_price():
+    final=[]
+    for i in ['NFLX','TATAMOTORS.NS','INFY','MARUTI.NS','ICICIBANK.NS']:
+    
+        stock={}
+        user_agent = {'User-agent': 'Mozilla/5.0'}
+        url=f'https://in.finance.yahoo.com/quote/{i}?p={i}&.tsrc=fin-srch'
+        page=requests.get(url,headers=user_agent)
+        #print(page.content)
+
+        soup=BeautifulSoup(page.text,'html.parser')
+        #print(soup)
+        val=(soup.find_all('div',{'class':"My(6px) Pos(r) smartphone_Mt(6px)"}))
+        cost=val[0].find_all('span',{'class':'Trsdu(0.3s) Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(b)'})
+        print(cost[0].text)
+        stock['cost']=cost[0].text
+        v=soup.find_all('h1',class_="D(ib) Fz(16px) Lh(18px)")
+        stock['name']=v[0].text
+        price=val[0].find_all('span',{'class':'Trsdu(0.3s) Fw(500) Fz(14px) C($positiveColor)'})
+
+        #print(price[0].text)
+        stock['profit']=price[0].text[0]
+        stock['percent']=price[0].text
+        final.append(stock)
+    return final
+
+
 class HomeView(View):
     def get(self,request,*args,**kwargs):
+        today = datetime.date.today()
+        yesterday = today - datetime.timedelta(days=2)
+
         url="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3e4b5fd607dd40289b24ac5db977cc63"
         url2="https://newsapi.org/v2/everything?q=corona&apiKey=3e4b5fd607dd40289b24ac5db977cc63&sort-by=popularity"
+        url3=f'https://api.covid19api.com/country/india?from={yesterday}T00:00:00Z&to={today}T00:00:00Z'
+        
+
+
         response1=requests.get(url)
         response2=requests.get(url2)
+        response3=requests.get(url3)
+
         val=response1.json()
         val2=response2.json()
-        content={'TopHeadlines':val['articles'],'Popularity':val2['articles'][0:10]}
+        val3=response3.json()
+        val3[1]['Active']=val3[1]['Confirmed']-val3[1]['Recovered']
+
+        data={  'ChangeConfirm':val3[1]['Confirmed']-val3[0]['Confirmed'],
+                'ChangeRecover':val3[1]['Recovered']-val3[0]['Recovered'],
+                'ChangeDeath':val3[1]['Deaths']-val3[0]['Deaths']}
+        content={'TopHeadlines':val['articles'],'Popularity':val2['articles'][0:10],'Cdata':val3[1],'Change':data,'stock':stock_price()}
 
         return render(self.request,"home.html",content)
 
@@ -92,3 +136,6 @@ def test(request):
     val=Choices.objects.get(user=request.user)
     Choices.objects.create(user=request.user,preferences=('Business','Technology'))
     return HttpResponse(val)
+
+
+
