@@ -31,6 +31,7 @@
       </ul>
       <div class="search">
           <form method="post" id="search_form">
+            {% csrf_token %}
             <input type="text" placeholder="Search news" id="s" />
              <button type="submit" id="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
