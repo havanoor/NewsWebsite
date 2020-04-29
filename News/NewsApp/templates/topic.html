@@ -28,8 +28,17 @@
         <li><a href="{% url 'Topic' topic='technology' %}">tech</a></li>
         <li><a href="{% url 'Topic' topic='business' %}">business</a></li>
         <li><a href="{% url 'Topic' topic='entertainment' %}">entertainment</a></li>
+        {% if user.is_authenticated %}
+          <li><a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">LogOut</a></li>
+          <form id="logout" method="POST" action="{% url 'logout' %}"></form>
+          <li><a>{{request.user.username}}</a></li>
+          {% else %}
+          <li><a href="{% url 'logiin' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          {% endif %}
       </ul>
       <div class="search">
+        {% csrf_token %}
           <form method="post" id="search_form">
             {% csrf_token %}
             <input type="text" placeholder="Search news" id="s" />
@@ -67,10 +76,10 @@
 </div>
    </div>
 </div>
-<script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script> 
-<script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script> 
-<script type="text/javascript" src="{% static 'assets/js/jquery.bxslider.js' %}"></script> 
-<script type="text/javascript" src="{% static 'assets/js/selectnav.min.js' %}"></script> 
+<script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jquery.bxslider.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/selectnav.min.js' %}"></script>
 <script type="text/javascript">
 selectnav('nav', {
     label: '-Navigation-',
