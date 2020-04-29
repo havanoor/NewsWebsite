@@ -37,7 +37,7 @@ from bs4 import BeautifulSoup
 def stock_price():
     final=[]
     for i in ['NFLX','TATAMOTORS.NS','INFY','MARUTI.NS','ICICIBANK.NS']:
-    
+
         stock={}
         user_agent = {'User-agent': 'Mozilla/5.0'}
         url=f'https://in.finance.yahoo.com/quote/{i}?p={i}&.tsrc=fin-srch'
@@ -69,7 +69,7 @@ class HomeView(View):
         url="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3e4b5fd607dd40289b24ac5db977cc63"
         url2="https://newsapi.org/v2/everything?q=corona&apiKey=3e4b5fd607dd40289b24ac5db977cc63&sort-by=popularity"
         url3=f'https://api.covid19api.com/country/india?from={yesterday}T00:00:00Z&to={today}T00:00:00Z'
-        
+
 
 
         response1=requests.get(url)
@@ -142,10 +142,12 @@ def register(request):
 
     return render(request,'signup.html',{'form':form})
 
+def logout_view(request):
+	logout(request)
+	return redirect('Home')
+
+
 def test(request):
     val=Choices.objects.get(user=request.user)
     Choices.objects.create(user=request.user,preferences=('Business','Technology'))
     return HttpResponse(val)
-
-
-

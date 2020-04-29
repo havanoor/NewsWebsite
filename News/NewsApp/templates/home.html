@@ -28,7 +28,14 @@
         <li><a href="{% url 'Topic' topic='technology' %}">tech</a></li>
         <li><a href="{% url 'Topic' topic='business' %}">business</a></li>
         <li><a href="{% url 'Topic' topic='entertainment' %}">entertainment</a></li>
-
+        {% if user.is_authenticated %}
+          <li><a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">LogOut</a></li>
+          <form id="logout" method="POST" action="{% url 'logout' %}"></form>
+          <li><a>{{request.user.username}}</a></li>
+          {% else %}
+          <li><a href="{% url 'logiin' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          {% endif %}
       </ul>
       <div class="search">
           <form  method="post" id="search_form">
@@ -41,7 +48,7 @@
             <!-- <input type="hidden" value="post" name="post_type" /> -->
           </form>
         </div>
-        
+
     </div>
     <div class="slider_area">
       <div class="slider">
@@ -116,11 +123,10 @@
 </div> -->
 <!-- TradingView Widget END -->
    <div class="rolling">
-    <marquee width="100%" direction="left" > 
-      
+    <marquee width="100%" direction="left" >
+
      <h2 style="color: green;"><pre>{% for val in stock %}{{val.name}}{{val.cost}}{{val.percent}} ||{% endfor %}</pre></h2>
-    
-     
+
    </marquee>
   </div>
     <div class="content_area">
@@ -136,42 +142,42 @@
               {% endfor %}
             <!-- <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
                 dolor eu mattis.</p>
               <a class="readmore" href="#">read more</a> </div>
             <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
                 dolor eu mattis.</p>
               <a class="readmore" href="#">read more</a> </div>
               <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
                 dolor eu mattis.</p>
               <a class="readmore" href="#">read more</a> </div>
               <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
                 dolor eu mattis.</p>
               <a class="readmore" href="#">read more</a> </div>
               <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
                 dolor eu mattis.</p>
               <a class="readmore" href="#">read more</a> </div>
               <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
                 dolor eu mattis.</p>
               <a class="readmore" href="#">read more</a> </div>
               <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
                 dolor eu mattis.</p>
               <a class="readmore" href="#">read more</a> </div>
               <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
               <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
                 dolor eu mattis.</p>
               <a class="readmore" href="#">read more</a> </div> -->
           </div>
@@ -179,7 +185,7 @@
         <div class="right_coloum floatright">
           <div class="single_right_coloum">
             <h2 class="title">COVID-19</h2>
-            
+
             <div class="card bg-danger text-white " style="background-color: #FFE5CC;">
               <div class="card-title" style="color: red;">Confirmed</div>
               <div class="card-body" style="color: red;">
@@ -261,12 +267,12 @@
         </div>
 
   </div>
-  <a class="twitter-timeline" data-width="400" data-height="400" data-theme="dark" href="https://twitter.com/googlenews?ref_src=twsrc%5Etfw">Tweets by BBCWorld</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+  <a class="twitter-timeline" data-width="400" data-height="400" data-theme="dark" href="https://twitter.com/googlenews?ref_src=twsrc%5Etfw">Tweets by BBCWorld</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
-<script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script> 
-<script type="text/javascript" src="{% static  'assets/js/bootstrap.min.js' %}"></script> 
-<script type="text/javascript" src="{% static 'assets/js/jquery.bxslider.js' %}"></script> 
-<script type="text/javascript" src="{% static 'assets/js/selectnav.min.js' %}"></script> 
+<script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script>
+<script type="text/javascript" src="{% static  'assets/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jquery.bxslider.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/selectnav.min.js' %}"></script>
 <script type="text/javascript">
 selectnav('nav', {
     label: '-Navigation-',
