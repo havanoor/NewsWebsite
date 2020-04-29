@@ -151,3 +151,8 @@ def test(request):
     val=Choices.objects.get(user=request.user)
     Choices.objects.create(user=request.user,preferences=('Business','Technology'))
     return HttpResponse(val)
+
+def logout_request(request):
+    logout(request)
+    
+    return redirect("Home")

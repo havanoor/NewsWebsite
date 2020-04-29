@@ -12,6 +12,7 @@ path('login2/',auth_views.LoginView.as_view(template_name='login.html')),
 path('register/',user_views.register,name="register"),
 path('logout/', user_views.logout_view, name="logout"),
 path('test/',user_views.test,name='test'),
+path('logout/',user_views.logout_request,name="logout")
 
 
 ]

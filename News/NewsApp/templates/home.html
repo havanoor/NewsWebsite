@@ -29,7 +29,8 @@
         <li><a href="{% url 'Topic' topic='business' %}">business</a></li>
         <li><a href="{% url 'Topic' topic='entertainment' %}">entertainment</a></li>
         {% if user.is_authenticated %}
-          <li><a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">LogOut</a></li>
+        
+          <li><a class="nav-item nav-link" href="{% url 'logout' %}">LogOut</a></li>
           <form id="logout" method="POST" action="{% url 'logout' %}"></form>
           <li><a>{{request.user.username}}</a></li>
           {% else %}
