@@ -9,17 +9,35 @@ License: GPL
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
+.weatherwidget-io{
+	border-radius: 5px;
+}
+.twitter_widget{
+	border:1px solid black;
+	border-radius: 10px;
+}
+#search_form{
+	margin-right: 8px;
+}
+.form-control{
+	background-color: black;
+	color: white;
+	border:2px solid white;
+	margin:5px;
+}
 .rolling{
 	margin-top: 5px;
 	border: 1px solid black;
 	border-radius:5px;
 	background-color: black;
+	color: white;
+	font-weight: bold;
 	
 }
 .card{
 	min-height: 100px;
 	border-radius: 5px;
-	margin-bottom:10px;
+	margin-bottom:30px;
 	margin-right: 5px;
 	box-shadow: 5px 5px 3px #D3D3D3; 
 }
@@ -46,24 +64,25 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     display: flex;
     /*flex: 1 1 auto;*/
     border: 1px solid black;
-    margin: 10px;
+    margin: 15px;
     border-radius: 5px;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
+    box-shadow: 10px 10px 5px #A9A9A9;
     
 }
 .img-square-wrapper{
 	padding: 5px;
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-right: 5px;
+	margin:10px;
 }
 .card_img{
 	border-radius: 5px;
 	border: 1px solid black;
 	
-	width:150px;
-	height: 160px;
+	max-width:200px;
+	max-height:200px;
+	min-height:200px;
+	min-width:200px; 
 }
 .card-title{
 	
@@ -71,7 +90,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 }
 .card-text{
 	margin-right: 5px;
-	width:500px;
+	width:450px;
 	font-size: 15px;
 	line-height: 1.0;
 
@@ -100,6 +119,12 @@ h3{
 	font-weight:bold;
 	margin-bottom:2px;
 	line-height:13px}
+	h1{
+		font-size: 20px;
+		margin-top: 5px;
+		font-weight: bold;
+
+	}
 h2{
 	font-size:25px;
 	line-height:30px}
@@ -132,10 +157,9 @@ div{overflow:hidden}
 	margin-bottom: 20px;
 
 }
-.search{}
+/*.search{}
 #search_form{
 	margin-top: 10px;
-
 }
 #s{
 	font-size: 20px;
@@ -149,7 +173,7 @@ div{overflow:hidden}
 }
 #submit{
 	font-size:12px;
-}
+}*/
 .news_img{
 	 display: block;
   margin-left: auto;
@@ -197,13 +221,18 @@ div{overflow:hidden}
 .slider2{width:250px}
 .content_area{margin-top:25px}
 .main_content{width:670px}
-.left_coloum{width:450px}
-.single_left_coloum_wrapper{position:relative; margin-left:-10px; margin-bottom:30px}
+.left_coloum{width:470px}
+.single_left_coloum_wrapper{position:relative; margin-left:-10px; margin-bottom:10px}
 .single_left_coloum_wrapper .title{margin-left:10px}
 .title{border-bottom:4px solid #CF0000; font-family:'bebasregular'; font-size:20px; word-spacing:2px}
 .more{background:url("images/plus.png") no-repeat scroll 57px 9px #CF0000; color:#FFF; display:block; font-size:10px; font-weight:bold; padding:4px 20px; position:absolute; right:0; text-transform:uppercase; top:10px}
 .popular_more{background:url("images/plus.png") no-repeat scroll 57px 12px #CF0000; color:#FFF; display:block; font-size:10px; font-weight:bold; padding:7px 20px; text-transform:uppercase; width:74px; margin-top:10px}
-.single_left_coloum{margin-left:10px; width:143px}
+.single_left_coloum{
+	margin-left:10px; 
+	width:150px;
+	margin-top: 5px;
+	height:250px;
+}
 .readmore, .single_cat_right_content_meta span{color:#CF0000; font-size:10px; text-transform:uppercase; font-weight:bold; margin-right:20px}
 .readmore:hover, .single_cat_right_content_meta span:hover{color:#CF0000; text-decoration:underline}
 .single_cat_left{}
@@ -211,7 +240,7 @@ div{overflow:hidden}
 .single_cat_left_content h3{font-size:15px}
 .single_cat_left_content_meta{font-size:11px}
 .single_cat_left_content_meta span{color:#cf0000}
-.right_coloum{width:190px}
+.right_coloum{width:170px}
 .single_right_coloum{margin-bottom:20px}
 .single_right_coloum ul{margin:0; padding:0; list-style:none}
 .single_right_coloum ul li{border-bottom:1px dotted #ddd}
