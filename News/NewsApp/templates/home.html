@@ -28,7 +28,21 @@
         <li><a href="{% url 'Topic' topic='technology' %}">tech</a></li>
         <li><a href="{% url 'Topic' topic='business' %}">business</a></li>
         <li><a href="{% url 'Topic' topic='entertainment' %}">entertainment</a></li>
-        {% if user.is_authenticated %}
+      
+      <li>
+          <!-- <form  method="post" id="search_form">
+            {% csrf_token %}
+            <input type="text" placeholder="Search news" id="s" name="Type" />
+             <button type="submit" id="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+          </form> -->
+          <!-- Search form -->
+          <form id="search_form">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">\
+          </form>
+        </li>
+         {% if user.is_authenticated %}
         
           <li><a class="nav-item nav-link" href="{% url 'logout' %}">LogOut</a></li>
           <form id="logout" method="POST" action="{% url 'logout' %}"></form>
@@ -37,19 +51,7 @@
           <li><a href="{% url 'logiin' %}">Login</a></li>
           <li><a href="{% url 'register' %}">Register</a></li>
           {% endif %}
-      </ul>
-      <div class="search">
-          <form  method="post" id="search_form">
-            {% csrf_token %}
-            <input type="text" placeholder="Search news" id="s" name="Type" />
-             <button type="submit" id="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            <!-- <input type="submit" id="searchform" value="search" /> -->
-            <!-- <input type="hidden" value="post" name="post_type" /> -->
-          </form>
-        </div>
-
+        </ul>
     </div>
     <div class="slider_area">
       <div class="slider">
@@ -60,73 +62,11 @@
         </ul>
       </div>
     </div>
-   <!--
-   <div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-  {
-  "symbols": [
-    {
-      "description": "hello",
-      "proName": "NSE:TATASTEEL"
-    },
-    {
-      "description": "",
-      "proName": "BSE:RELIANCE"
-    },
-    {
-      "description": "",
-      "proName": "BSE:HDFCBANK"
-    },
-    {
-      "description": "",
-      "proName": "NSE:NIFTY"
-    },
-    {
-      "description": "",
-      "proName": "NSE:SINTEX"
-    },
-    {
-      "description": "",
-      "proName": "NSE:ICICIBANK"
-    },
-    {
-      "description": "",
-      "proName": "BSE:SENSEX"
-    },
-    {
-      "description": "",
-      "proName": "BSE:BAJFINANCE"
-    },
-    {
-      "description": "",
-      "proName": "BSE:TATAMOTORS"
-    },
-    {
-      "description": "",
-      "proName": "BSE:IRCTC"
-    },
-    {
-      "description": "",
-      "proName": "NSE:TCS"
-    },
-    {
-      "description": "",
-      "proName": "NSE:NSIL"
-    }
-  ],
-  "colorTheme": "dark",
-  "isTransparent": false,
-  "displayMode": "adaptive",
-  "locale": "in"
-}
-  </script>
-</div> -->
-<!-- TradingView Widget END -->
+  
    <div class="rolling">
     <marquee width="100%" direction="left" >
 
-     <h2 style="color: green;"><pre>{% for val in stock %}{{val.name}}{{val.cost}}{{val.percent}} ||{% endfor %}</pre></h2>
+     <h1>{% for val in stock %}{{val.name}}{{val.cost}}{{val.percent}} ||{% endfor %}</h1>
 
    </marquee>
   </div>
@@ -136,51 +76,15 @@
           <h2 class="title">from   around   the   world</h2>
           <div class="single_left_coloum_wrapper">
             {% for num in TopHeadlines %}
-            <div class="single_left_coloum floatleft"> <img src={{num.urlToImage}} alt="" />
+            <div class="single_left_coloum floatleft">
+             <img src={{num.urlToImage}} alt="" />
               <h3>{{num.title}}</h3>
               <p>{{num.description}}</p>
               <a class="readmore" href={{num.url}}>read more</a> </div>
               {% endfor %}
-            <!-- <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-              <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-              <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-              <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-              <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-              <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-              <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div> -->
+            </div>
+            <div class="twitter_widget" >
+            <a class="twitter-timeline floatleft" data-width="500" data-height="400" data-theme="light" href="https://twitter.com/googlenews?ref_src=twsrc%5Etfw">Tweets by Google News</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </div>
         </div>
         <div class="right_coloum floatright">
@@ -264,11 +168,13 @@
                 </div>
               </li> -->
             </ul>
-            <a class="popular_more">more</a> </div>
         </div>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/19d1172d84/vile-parle-west/" data-label_1="VILE PARLE WEST" data-label_2="WEATHER" data-mode="Forecast" data-days="7" data-theme="original" data-basecolor="#CF0000" >VILE PARLE WEST WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
 
   </div>
-  <a class="twitter-timeline" data-width="400" data-height="400" data-theme="dark" href="https://twitter.com/googlenews?ref_src=twsrc%5Etfw">Tweets by BBCWorld</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 <script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script>
 <script type="text/javascript" src="{% static  'assets/js/bootstrap.min.js' %}"></script>
