@@ -138,10 +138,11 @@
       <div class="sidebar floatright">
         <div class="single_sidebar">
           <div class="popular">
+
             {% if user.is_authenticated %}
             <h2 class="title">For You</h2>
             {% else %}
-            <h2 class="title">For You</h2>
+            <h2 class="title">Popular Around you</h2>
             {% endif %}
             <ul>
               {% for val in Popularity %}
