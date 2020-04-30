@@ -28,16 +28,7 @@
         <li><a href="{% url 'Topic' topic='technology' %}">tech</a></li>
         <li><a href="{% url 'Topic' topic='business' %}">business</a></li>
         <li><a href="{% url 'Topic' topic='entertainment' %}">entertainment</a></li>
-        {% if user.is_authenticated %}
-          <li><a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">LogOut</a></li>
-          <form id="logout" method="POST" action="{% url 'logout' %}"></form>
-          <li><a>{{request.user.username}}</a></li>
-          {% else %}
-          <li><a href="{% url 'logiin' %}">Login</a></li>
-          <li><a href="{% url 'register' %}">Register</a></li>
-          {% endif %}
-      </ul>
-      <div class="search">
+     <!--  <li><div class="search">
         {% csrf_token %}
           <form method="post" id="search_form">
             {% csrf_token %}
@@ -45,10 +36,23 @@
              <button type="submit" id="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
-            <!-- <input type="submit" id="searchform" value="search" /> -->
-            <!-- <input type="hidden" value="post" name="post_type" /> -->
           </form>
         </div>
+      </li> -->
+      <li>
+      <form id="search_form">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+      </form>
+      </li>
+      {% if user.is_authenticated %}
+          <li><a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">LogOut</a></li>
+          <form id="logout" method="POST" action="{% url 'logout' %}"></form>
+          <li><a>{{request.user.username}}</a></li>
+          {% else %}
+          <li><a href="{% url 'logiin' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          {% endif %}
+    </ul>
     </div>
     <div class="container-fluid">
     <div class="row">
@@ -56,7 +60,7 @@
       </div>
         <div class="col-sm-10">
           {% for val in Topic %}
-            <div class="card">
+           <!--  <div class="card"> -->
                 <div class="card-horizontal">
                     <div class="img-square-wrapper">
                         <img class="card_img" src={{val.urlToImage}} alt="Card image cap">
@@ -66,10 +70,10 @@
                         <p class="card-text">
                             {{val.description}}
                         </p>
-                        <a href={{val.url}}><button type="button" class="btn btn-danger btn-sm" style="color: black;margin-bottom: 10px">Read More</button></a>
+                        <a href={{val.url}}><button type="button" class="btn btn-danger btn-sm" style="color: black;margin-bottom: 10px;margin-top: 10px;">Read More</button></a>
                     </div>
                 </div>
-            </div>
+           <!--  </div> -->
             {% endfor %}
         </div>
     </div>
