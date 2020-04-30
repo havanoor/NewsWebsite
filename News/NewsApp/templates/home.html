@@ -38,8 +38,9 @@
               </button>
           </form> -->
           <!-- Search form -->
-          <form id="search_form">
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search">\
+          <form id="search_form" method="POST">
+            {% csrf_token %}
+            <input class="form-control" type="text" name="Type" placeholder="Search" aria-label="Search">
           </form>
         </li>
          {% if user.is_authenticated %}
@@ -53,12 +54,16 @@
           {% endif %}
         </ul>
     </div>
+    <!-- Yaha slider ka code aayegaa -->
+
     <div class="slider_area">
       <div class="slider">
         <ul class="bxslider">
-          <li><img src="{% static 'images/1.jpg'%}" alt="" title="Slider caption text" /></li>
-          <li><img src="{% static 'images/2.jpg' %}" alt="" title="Slider caption text" /></li>
-          <li><img src="{% static 'images/3.jpg' %}" alt="" title="Slider caption text" /></li>
+          {% for val2 in TopHeadlines %}
+          <li><img src={{val2.urlToImage}} alt="" title="{{val2.description}}" /></li>
+          {% endfor %}
+          <!-- <li><img src="{% static 'images/2.jpg' %}" alt="" title="Slider caption text" /></li>
+          <li><img src="{% static 'images/3.jpg' %}" alt="" title="Slider caption text" /></li> -->
         </ul>
       </div>
     </div>
@@ -133,7 +138,11 @@
       <div class="sidebar floatright">
         <div class="single_sidebar">
           <div class="popular">
-            <h2 class="title">Popular</h2>
+            {% if user.is_authenticated %}
+            <h2 class="title">For You</h2>
+            {% else %}
+            <h2 class="title">For You</h2>
+            {% endif %}
             <ul>
               {% for val in Popularity %}
               <li>

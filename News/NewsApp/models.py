@@ -12,3 +12,6 @@ class Choices(models.Model):
 
     )
     preferences=MultiSelectField(choices=topics)
+
+    # def __str__(self):
+    #     return self.preferences

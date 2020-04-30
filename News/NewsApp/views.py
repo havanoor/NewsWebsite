@@ -67,9 +67,17 @@ class HomeView(View):
         yesterday = today - datetime.timedelta(days=2)
 
         url="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3e4b5fd607dd40289b24ac5db977cc63"
-        url2="https://newsapi.org/v2/everything?q=corona&apiKey=3e4b5fd607dd40289b24ac5db977cc63&sort-by=popularity"
+        
+        if request.user.is_authenticated :
+            print("Hello",request.user.is_authenticated)
+            
+            text=test(request.user)
+            print(text)
+            url2=f'https://newsapi.org/v2/everything?q={text}&apiKey=3e4b5fd607dd40289b24ac5db977cc63&sort-by=popularity'
+        else:
+            url2="https://newsapi.org/v2/everything?q=corona&apiKey=3e4b5fd607dd40289b24ac5db977cc63&sort-by=popularity"
         url3=f'https://api.covid19api.com/country/india?from={yesterday}T00:00:00Z&to={today}T00:00:00Z'
-
+        #url3='https://api.covid19api.com/country/india?from=2020-04-27T00:00:00Z&to=2020-04-29T00:00:00Z'
 
 
         response1=requests.get(url)
@@ -84,7 +92,7 @@ class HomeView(View):
         data={  'ChangeConfirm':val3[1]['Confirmed']-val3[0]['Confirmed'],
                 'ChangeRecover':val3[1]['Recovered']-val3[0]['Recovered'],
                 'ChangeDeath':val3[1]['Deaths']-val3[0]['Deaths']}
-        content={'TopHeadlines':val['articles'],'Popularity':val2['articles'][0:10],'Cdata':val3[1],'Change':data,'stock':stock_price()}
+        content={'TopHeadlines':val['articles'][0:9],'Popularity':val2['articles'][0:10],'Cdata':val3[1],'Change':data,'stock':stock_price()}
 
         return render(self.request,"home.html",content)
 
@@ -147,10 +155,17 @@ def logout_view(request):
 	return redirect('Home')
 
 
-def test(request):
-    val=Choices.objects.get(user=request.user)
-    Choices.objects.create(user=request.user,preferences=('Business','Technology'))
-    return HttpResponse(val)
+def test(use):
+    all=[]
+    s=''
+    val=Choices.objects.get(user=use)
+    #Choices.objects.create(user=request.user,preferences=('Business','Technology'))
+    for i in val.preferences:
+        all.append(i)
+        s +=' '+i.lower()+' AND' 
+        v='(' +s[0:len(s)-3] + ')'
+    return v
+    #return HttpResponse(s[0:len(s)-3])
 
 def logout_request(request):
     logout(request)
